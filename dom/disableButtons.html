@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <fieldset>
+            <legend>Mi a kedvenc állatod?</legend>
+
+            <div>
+                <input type="radio" id="dog" name="animal" value="dog" />
+                <label for="dog">Kutya</label>
+            </div>
+
+            <div>
+                <input type="radio" id="cat" name="animal" value="cat" />
+                <label for="cat">Macska</label>
+            </div>
+
+            <div>
+                <input type="radio" id="fish" name="animal" value="fish" />
+                <label for="fish">Viktor, az aranyhal</label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Szeretnél feliratkozni a macskákkal kapcsolatos hírlevélre?</legend>
+
+            <div>
+                <input type="radio" id="yes" name="newsletter" value="yes" />
+                <label for="yes">Igen</label>
+            </div>
+
+            <div>
+                <input type="radio" id="no" name="newsletter" value="no" />
+                <label for="no">Nem</label>
+            </div>
+
+        </fieldset>
+        <button disabled id="love-cats-btn">Szeretem a macskákat</button>
+        <button disabled id="subscribe-btn">Feliratkozás</button>
+        <div id="result-container">
+
+        </div>
+    </div>
+    <script>
+
+        //         Gomb letiltása
+        // Űrlap elemek
+        // Hozz létre egy ilyen kérdést: Mi a kedvenc állatod?
+        // Legyen 3 rádiógombod:
+        // Kutya
+        // Cica
+        // Viktor, az aranyhal
+        // Legyen két rádiógombod a következő kérdés megválaszolására: Szeretnél feliratkozni a macskákkal kapcsolatos hírlevélre?
+        // Igen
+        // Nem
+        // Hozz létre kettő gombot, mindkettő legyen alapesetben letiltva
+        // Szeretem a macskákat
+        // Feliratkozás
+        // Feladat
+        // A rádiógombok legyenek csoportosítva, hogy csak egyet lehessen választani
+        // Ha kiválasztod a Kutyát vagy Cicát, a Feliratkozás gomb legyen elérhető
+        // Ha igennel válaszolsz a macskás hírlevélre, akkor legyen elérhető a Szeretem a macskákat gomb
+        // Egy gombra kattintva jelenjen meg a következő figyelmeztetés:
+        // Köszönjük, sikeresen feliratkoztál a macskákkal kapcsolatos hírlevelünkre
+        // Ha Viktort választod és nemmel válaszolsz a macskás feliratkozásra, akkor csak a feliratkozás gomb legyen elérhető
+        // Ezesetben kattintás után jelenjen meg a következő: Upsz, mégis felvettünk a macskákkal kapcsolatos hírlevelünkre
+        const chooseAnimalRadio = document.querySelectorAll('input[name="animal"]');
+        const chooseNewLetterRadio = document.querySelectorAll('input[name="newsletter"]');
+        const resultContainer = document.getElementById("result-container")
+        const subscribeBtn = document.querySelector('#subscribe-btn');
+        const loveCatsBtn = document.querySelector('#love-cats-btn');
+        let animalInputValue;
+        let newsletterInputValue;
+        if (chooseAnimalRadio) {
+            chooseAnimalRadio.forEach((item) => {
+                item.addEventListener("change", function (event) {
+                    const { value } = event.target;
+                    if (value) {
+                        animalInputValue = value;
+                        subscribeBtn.disabled = false;
+                    }
+                });
+            });
+        }
+        if (chooseNewLetterRadio) {
+            chooseNewLetterRadio.forEach((item) => {
+                item.addEventListener("change", function (event) {
+                    const { value } = event.target;
+                    newsletterInputValue = value;
+                    if (value === "yes") {
+                        loveCatsBtn.disabled = false;
+                    } else {
+                        loveCatsBtn.disabled = true;
+
+                    }
+                });
+            });
+        }
+
+        loveCatsBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            if (animalInputValue === "cat" || animalInputValue === "dog") {
+                createPTag("Köszönjük, sikeresen feliratkoztál a macskákkal kapcsolatos hírlevelünkre")
+            } else if (animalInputValue === "fish" && newsletterInputValue === "yes") {
+                createPTag("Köszönjük, sikeresen feliratkoztál a macskákkal kapcsolatos hírlevelünkre")
+            }
+            else {
+                createPTag("Upsz, mégis felvettünk a macskákkal kapcsolatos hírlevelünkre")
+
+            }
+
+        })
+        subscribeBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            if (animalInputValue === "cat" || animalInputValue === "dog") {
+                createPTag("Köszönjük, sikeresen feliratkoztál a macskákkal kapcsolatos hírlevelünkre")
+            } else if (animalInputValue === "fish" && newsletterInputValue === "yes") {
+                createPTag("Köszönjük, sikeresen feliratkoztál a macskákkal kapcsolatos hírlevelünkre")
+            }
+            else {
+                createPTag("Upsz, mégis felvettünk a macskákkal kapcsolatos hírlevelünkre")
+
+            }
+
+        })
+
+        function createPTag(text) {
+            const oldP = document.getElementById("result");
+            oldP && resultContainer.removeChild(oldP);
+
+            const result = document.createElement("p");
+            result.setAttribute("id", "result");
+            resultContainer.appendChild(result);
+            result.innerText = text;
+
+        }
+    </script>
+</body>
+
+</html>
