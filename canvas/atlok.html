@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Diagonals</title>
+    <style>
+        .main-canvas {
+            margin: 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600" height="400" class="main-canvas"></canvas>
+    <script>
+
+        'use strict';
+
+        const canvas = document.querySelector('.main-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // NE NYÚLJ A FENTI KÓDHOZ
+
+        // Rajzold be a canvas átlóit
+        // Amelyik a bal felső sarokból indul, az legyen zöld, a másik piros.
+        ctx.strokeStyle = 'green';
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(canvas.width, canvas.height)
+        ctx.stroke();
+
+        ctx.strokeStyle = 'red';
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height);
+        ctx.lineTo(canvas.width, 0)
+        ctx.stroke();
+    </script>
+  </body>
+</html>

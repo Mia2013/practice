@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            margin: 30px 50px;
+        }
+
+        .main-canvas {
+            margin: 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <input type="text" id="add-color">
+            <button id="add-color-btn">Hozzáadás</button>
+
+        </div>
+        <div id="select-container">
+
+            <select id="select">
+                <option value="cirle">Kör</option>
+                <option value="square">Téglalap</option>
+            </select>
+            <button id="choose">Kiválaszt</button>
+            <div id="input-container"></div>
+        </div>
+        <canvas width="600" height="400" class="main-canvas"></canvas>
+
+    </div>
+
+    <script>
+        'use strict';
+
+        const canvas = document.querySelector('.main-canvas');
+        const ctx = canvas.getContext('2d');
+
+        const colors = ["red"];
+        const addColorInput = document.getElementById("add-color");
+        const addColorBtn = document.getElementById("add-color-btn");
+        const selectBtn = document.getElementById("choose");
+        const selectedItem = document.getElementById("select");
+        const selectContainer = document.getElementById("select-container");
+        const inputContainer = document.getElementById("input-container");
+
+        addColorBtn.addEventListener("click", function (e) {
+            const color = addColorInput.value;
+            colors.push(color);
+        })
+
+        selectBtn.addEventListener("click", function (e) {
+            //a selectből kiválasztott érték
+            const value = selectedItem.value;
+            //kitörlöm az előző inputokat
+            removeAllChildNodes(inputContainer);
+            //régi p tag kitörlése
+            const oldResult = document.getElementById("result");
+            oldResult && selectContainer.removeChild(oldResult);
+            // canvas törlése:
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            //p létrehozása
+            const result = document.createElement("p");
+            result.setAttribute("id", "result");
+            selectContainer.appendChild(result);
+
+            if (value === "cirle") {
+                //input hozzáadása a domhoz
+                const setRadiusInput = document.createElement("input");
+                setRadiusInput.setAttribute("id", "set-radius")
+                inputContainer.appendChild(setRadiusInput);
+                //változás követése
+                setRadiusInput.addEventListener("change", function (e) {
+                    const r = this.value;
+                    result.innerText = `A kör területe ${r ** 2 * Math.PI}`
+                    drawCircle(r)
+                })
+            } else if (value === "square") {
+                //input hozzáadása a domhoz
+                const setWidthInput = document.createElement("input");
+                setWidthInput.setAttribute("id", "set-width")
+                inputContainer.appendChild(setWidthInput);
+                const setHeightInput = document.createElement("input");
+                setHeightInput.setAttribute("id", "set-height")
+                inputContainer.appendChild(setHeightInput);
+
+                let width;
+                let height;
+                setWidthInput.addEventListener("change", function (e) {
+                    width = this.value;
+                    if (width && height) {
+                        result.innerText = `A téglalap területe ${width * height}`
+                        drawSquare(width, height)
+                    }
+                })
+                setHeightInput.addEventListener("change", function (e) {
+                    height = this.value;
+                    if (width && height) {
+                        result.innerText = `A téglalap területe ${width * height}`
+                        drawSquare(width, height)
+
+                    }
+                })
+            }
+        })
+
+        //kör rajzolása
+        function drawCircle(radius) {
+            ctx.beginPath();
+            ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+            // (x, y, radius, 0, Math.PI*2)
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        // téglalap rajzolása
+        const drawSquare = (width, height) => {
+            ctx.beginPath();
+            ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+            //x, y, width, height, ez most középre rajzol
+            const x = canvas.width;
+            const y = canvas.height;
+            ctx.fillRect(x / 2 - width / 2, y / 2 - height / 2, width, height);
+        }
+
+        // domban megadom a parentet és eltávolítja a gyermek elemeit
+        function removeAllChildNodes(parent) {
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

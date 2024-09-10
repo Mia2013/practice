@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Colored Box</title>
+    <style>
+        .main-canvas {
+            margin: 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600" height="400" class="main-canvas"></canvas>
+    <script>
+        'use strict';
+
+        const canvas = document.querySelector('.main-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // NE NYÚLJ A FENTI KÓDHOZ
+
+        // Rajzolj egy négyzetet aminek minden oldala más színű.
+
+        const connectTheDots = (array) => {
+            for (let i = 0; i < array.length; i++) {
+                // Rajzol egy vonalat
+                const colors = ["black", "yellow", "red", "blue", "green", "orange", "purple", "brown", "gray", "pink", "cyan", "magenta", "lime", "olive", "navy", "teal", "maroon"];
+                ctx.strokeStyle = colors[Math.floor(Math.random()*colors.length)];
+
+                ctx.beginPath();
+
+                ctx.moveTo(array[i][0], array[i][1]);
+                if (i < array.length - 1) {
+                    ctx.lineTo(array[i + 1][0], array[i + 1][1]);
+                }
+                if (i === array.length - 1) {
+                    console.log(i)
+                    ctx.moveTo(array[i][0], array[i][1]);
+                    ctx.lineTo(array[0][0], array[0][1]);
+                }
+                ctx.stroke();
+
+            }
+
+        }
+        connectTheDots([[10, 10], [290, 10], [290, 290], [10, 290]])
+        connectTheDots([[20, 20], [250, 20], [250, 250], [20, 250]])
+        connectTheDots([[100, 100], [200, 100], [200, 200], [100, 200]])
+        connectTheDots([[300, 300], [400, 300], [400, 400], [300, 400]])
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Circle</title>
+    <style>
+        .main-canvas {
+            margin: 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600" height="400" class="main-canvas"></canvas>
+    <script>
+        'use strict';
+
+        const canvas = document.querySelector('.main-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // NE NYÚLJ A FENTI KÓDHOZ
+
+        // Rajzolj egy kört ami a canvas közeépen van és random méretű a sugara
+        const drawCircle = (radius) => {
+            // canvas törlése:
+            // ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            // (x, y, radius, 0, Math.PI*2)
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+        drawCircle(10);
+        drawCircle(15);
+        drawCircle(20);
+        drawCircle(25);
+        drawCircle(50);
+    </script>
+</body>
+
+</html>

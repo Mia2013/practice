@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Centered Square</title>
+    <style>
+        .main-canvas {
+            margin: 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="600" height="400" class="main-canvas"></canvas>
+    <script>
+        'use strict';
+
+        const canvas = document.querySelector('.main-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // NE NYÚLJ A FENTI KÓDHOZ
+
+        // Rajzolj egy zöld 10x10-es négyzetet a canvas közepére.
+
+       const drawCenteredSquare=(size)=>{
+        
+        const x = canvas.width;
+        const y = canvas.height;
+        ctx.strokeRect(x/2-size/2, y/2-size/2, size, size);
+       }
+       drawCenteredSquare(10)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Line in the middle</title>
+  <style>
+    .main-canvas {
+      margin: 20px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas width="600" height="400" class="main-canvas"></canvas>
+  <script>
+    const canvas = document.querySelector('.main-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // NE NYÚLJ A FENTI KÓDHOZ
+
+    // rajzolj egy piros horizontális vonalat a canvas közepére
+    // rajzolj egy zöld horizontális vonalat a canvas közepére
+    ctx.strokeStyle = 'red';
+ctx.beginPath();
+ctx.moveTo(canvas.width/2, 0);
+ctx.lineTo(canvas.width/2, canvas.height/2)
+ctx.stroke();
+
+ctx.strokeStyle = 'green';
+ctx.beginPath();
+ctx.moveTo(canvas.width/2, canvas.height);
+ctx.lineTo(canvas.width/2, canvas.height/2)
+ctx.stroke();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="form">
+        <div>
+
+            <input type="text" id="username">
+        </div>
+        <div>
+
+            <input type="password" id="password">
+        </div>
+        <button id="login-btn">Bejelentkezés</button>
+
+    </div>
+    <script>
+        const form = document.getElementById("form");
+        const loginBtn = document.getElementById("login-btn")
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+
+        loginBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const oldDisplay = document.getElementById("display-login-data") || "";
+            oldDisplay && form.removeChild(oldDisplay);
+
+            const username = usernameInput?.value;
+            const password = passwordInput?.value;
+            const display = document.createElement("p");
+            display.setAttribute("id", "display-login-data")
+            form.appendChild(display);
+            display.innerText = `Felhasználónév: ${username} Jelszó: ${password}`
+        })
+    </script>
+</body>
+
+</html>

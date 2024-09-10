@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Everything Goes to Center</title>
+  <style>
+    .main-canvas {
+      margin: 20px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas width="600" height="400" class="main-canvas"></canvas>
+  <script>
+    'use strict';
+
+    const canvas = document.querySelector('.main-canvas');
+    const ctx = canvas.getContext('2d');
+    const centerX = canvas.width /2;
+    const centerY = canvas.height /2;
+
+    const drawLineToCenter = (x, y) => {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(centerX, centerY);
+      ctx.stroke();
+    }
+
+    const drawLinesToCenter = (distance = 20) => {
+      for (let i = 0; i <= canvas.width; i+=distance) {
+        drawLineToCenter(i, 0);
+        drawLineToCenter(i, canvas.height);
+      }
+
+      for (let i = 0; i <= canvas.height;  i+=distance) {
+        drawLineToCenter(0, i);
+        drawLineToCenter(canvas.width, i);
+      }
+    }
+
+    // const drawLinesToCenter = (distance = 20) => {
+    //   for (let i = 0; i <= canvas.width / distance; i++) {
+    //     drawLineToCenter(i*distance, 0);
+    //   }
+    //   for (let i = 0; i <= canvas.width / distance; i++) {
+    //     drawLineToCenter(i*distance, 400);
+    //   }
+    //   for (let i = 0; i <= canvas.height / distance; i++) {
+    //     drawLineToCenter(0, i*distance);
+    //   }
+    //   for (let i = 0; i <= canvas.height / distance; i++) {
+    //     drawLineToCenter(600, i*distance);
+    //   }
+    // }
+
+    drawLinesToCenter()
+    // NE NYÚLJ A FENTI KÓDHOZ
+
+    // Készíts egy függvényt, ami rajzol egy vonalat és két paramétert vár:
+    // A vonal kezdőpontjának x és y koordinátáit. Ezután rajzol egy vonalat
+    // a megadott pont és a cavas közepe között.
+    // Töltsd meg a canvast vonalakkal, a szélektől indulva 20 pixelenként.
+
+
+  </script>
+</body>
+
+</html>
