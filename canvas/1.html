@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" style="border: 1px solid black"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      //a canvas magasságát, szélességét js kódban is megadhatom
+      canvas.width = 600;
+      canvas.height = 800;
+
+      //négyszög rajzolása canvasban, zöld színnel ki van töltve, előbb a fillStyle, utána a fillREct
+      // ctx.fillRect(x, y, szélesség,  magasság)
+      ctx.fillStyle = "green";
+      ctx.fillRect(150, 150, 300, 300);
+
+      //négyszög rajzolása körvonallal, style a vonal színe
+      ctx.strokeStyle = "red";
+      ctx.strokeRect(50, 50, 50, 50);
+
+      //(kör rajzolása
+      //   1.
+      ctx.beginPath();
+      //   2. x, y, sugár(r), 0(milyen szögben kezdődjön), 2PI (milyen szögben érjen véget)
+      ctx.arc(300, 400, 50, 0, Math.PI * 2);
+      // 3. kitölteni vagy körvonalazni fill/stroke
+      ctx.stroke();
+
+      // körcikk 1/4
+      ctx.beginPath();
+      ctx.arc(10, 10, 50, 0, Math.PI / 2);
+      //a kör középpontjába huzza be a vonalat
+      ctx.lineTo(10, 10);
+      ctx.fill();
+    </script>
+  </body>
+</html>

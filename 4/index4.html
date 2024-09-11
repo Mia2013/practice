@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .form-content {
+      display: flex;
+      flex-direction: row;
+      gap: 150px;
+    }
+
+    .labels {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 91px;
+    }
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input {
+      width: auto;
+    }
+    /* h3{
+        text-align: center;
+    } */
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      padding: 20px;
+      width: 700px
+    }
+
+   .input1{
+      width: 180px !important;
+    }
+    select{
+      width: fit-content;
+    }
+    .checkbox-container{
+     display: flex;    
+     }
+
+     .checkbox-first-element{
+      width: 220px;
+     }
+
+  </style>
+
+  <body>
+    <div class="container">
+    <h3>Car Picker</h3>
+    <form>
+      <div class="form-content">
+        <div class="labels">
+          <label for="email">Email address</label>
+          <label for="colors">Colors</label>
+          <label for="checkbox1">Options</label>
+          <label for="two">Doors</label>
+        </div>
+        <div class="inputs">
+          <input type="text"  name="email" class="input1"/>
+          <select id="colors" name="colors">
+            <option>red</option>
+            <option>red</option>
+            <option>red</option>
+            <option>red</option>
+          </select>
+          <div>
+            <div class="checkbox-container">
+              <div class="checkbox-first-element">
+              <input
+                type="checkbox"
+                id="checkbox1"
+                name="checkbox1"
+                value="Sunroof"
+                checked
+              />
+              <label for="checkbox1"> Sunroof (two doors only)</label>
+            </div>
+            <div>
+
+              <input
+                type="checkbox"
+                id="checkbox2"
+                name="checkbox2"
+                value="Power Windows"
+                checked
+              />
+              <label for="checkbox2" > Power Windows</label>
+            </div>
+
+            </div>
+            <div class="checkbox-container">
+              <div  class="checkbox-first-element">
+                <input type="radio" id="two" name="fav_language" value="two" checked />
+                <label for="two">Two</label>
+
+              </div>
+              <div>
+                <input type="radio" id="four" name="fav_language" value="four" />
+                <label for="four">Four</label>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label for="dealer">
+          Enter your Zip code or pick the dealer nearest you:
+        </label>
+      </div>
+      <div>
+        <select name="languages" id="dealer" multiple>
+          <option value="1">California--Lemon Grove</option>
+          <option value="2">California--Lomita</option>
+          <option value="3">California--Long Beach</option>
+          <option value="4">California--Los Amitos</option>
+          <option value="5">California--</option>
+        </select>
+      </div>
+      <div class="form-content">
+        <div class="labels">
+          <label for="zip">Zip</label>
+        </div>
+        <div class="inputs">
+          <input type="text" name="zip"  class="input1"/>
+        </div>
+      </div>
+      <button>Submit</button>
+      <button>Reset</button>
+    </form>
+  </body>
+</html>
